@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="888a88f5-d468-4e1f-92a0-8b0edbf62e26" name="Default Changelist" comment="" />
+    <list default="true" id="888a88f5-d468-4e1f-92a0-8b0edbf62e26" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.MD" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/config.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/kafka-client.PNG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,6 +29,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -39,6 +48,9 @@
     <option name="version" value="1" />
   </component>
   <component name="ProjectId" id="1cBjr9OvR8yWT0WGpC1hkj86slV" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="autoscrollToSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -46,7 +58,9 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
@@ -138,12 +152,15 @@
       <workItem from="1590175498349" duration="1868000" />
       <workItem from="1590410619142" duration="1881000" />
       <workItem from="1590413258604" duration="7353000" />
-      <workItem from="1590437711974" duration="689000" />
+      <workItem from="1590437711974" duration="1401000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="416" y="91" key="#Plugins" timestamp="1590022428636">
@@ -174,22 +191,22 @@
       <screen x="109" y="0" width="1427" height="864" />
     </state>
     <state x="604" y="187" key="FileChooserDialogImpl/109.0.1427.864@109.0.1427.864" timestamp="1590175613870" />
-    <state width="1369" height="148" key="GridCell.Tab.0.bottom" timestamp="1590434836402">
+    <state width="1369" height="427" key="GridCell.Tab.0.bottom" timestamp="1590442216679">
       <screen x="109" y="0" width="1427" height="864" />
     </state>
-    <state width="1369" height="148" key="GridCell.Tab.0.bottom/109.0.1427.864@109.0.1427.864" timestamp="1590434836402" />
-    <state width="1369" height="148" key="GridCell.Tab.0.center" timestamp="1590434836402">
+    <state width="1369" height="427" key="GridCell.Tab.0.bottom/109.0.1427.864@109.0.1427.864" timestamp="1590442216679" />
+    <state width="1369" height="427" key="GridCell.Tab.0.center" timestamp="1590442216679">
       <screen x="109" y="0" width="1427" height="864" />
     </state>
-    <state width="1369" height="148" key="GridCell.Tab.0.center/109.0.1427.864@109.0.1427.864" timestamp="1590434836402" />
-    <state width="1369" height="148" key="GridCell.Tab.0.left" timestamp="1590434836402">
+    <state width="1369" height="427" key="GridCell.Tab.0.center/109.0.1427.864@109.0.1427.864" timestamp="1590442216679" />
+    <state width="1369" height="427" key="GridCell.Tab.0.left" timestamp="1590442216679">
       <screen x="109" y="0" width="1427" height="864" />
     </state>
-    <state width="1369" height="148" key="GridCell.Tab.0.left/109.0.1427.864@109.0.1427.864" timestamp="1590434836402" />
-    <state width="1369" height="148" key="GridCell.Tab.0.right" timestamp="1590434836402">
+    <state width="1369" height="427" key="GridCell.Tab.0.left/109.0.1427.864@109.0.1427.864" timestamp="1590442216679" />
+    <state width="1369" height="427" key="GridCell.Tab.0.right" timestamp="1590442216679">
       <screen x="109" y="0" width="1427" height="864" />
     </state>
-    <state width="1369" height="148" key="GridCell.Tab.0.right/109.0.1427.864@109.0.1427.864" timestamp="1590434836402" />
+    <state width="1369" height="427" key="GridCell.Tab.0.right/109.0.1427.864@109.0.1427.864" timestamp="1590442216679" />
     <state width="1369" height="148" key="GridCell.Tab.1.bottom" timestamp="1590434836403">
       <screen x="109" y="0" width="1427" height="864" />
     </state>
@@ -226,10 +243,10 @@
       <screen x="109" y="0" width="1427" height="864" />
     </state>
     <state x="554" y="188" key="extract.method.dialog/109.0.1427.864@109.0.1427.864" timestamp="1590106374769" />
-    <state x="525" y="164" width="609" height="536" key="find.popup" timestamp="1590441793257">
+    <state x="525" y="164" width="609" height="536" key="find.popup" timestamp="1590442075961">
       <screen x="109" y="0" width="1427" height="864" />
     </state>
-    <state x="525" y="164" width="609" height="536" key="find.popup/109.0.1427.864@109.0.1427.864" timestamp="1590441793257" />
+    <state x="525" y="164" width="609" height="536" key="find.popup/109.0.1427.864@109.0.1427.864" timestamp="1590442075961" />
     <state x="480" y="197" width="672" height="677" key="run.anything.popup" timestamp="1590174409111">
       <screen x="109" y="0" width="1427" height="864" />
     </state>
