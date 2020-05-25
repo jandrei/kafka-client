@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="888a88f5-d468-4e1f-92a0-8b0edbf62e26" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="ErrorTreeViewConfiguration">
+    <option name="autoscrollToSource" value="true" />
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="package.json" />
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:/programas/apache-maven-3.3.9" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1cBjr9OvR8yWT0WGpC1hkj86slV" />
+  <component name="ProjectViewState">
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="last_opened_file_path" value="C:/workshop-devops/weblaf" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="br" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean package" />
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.FramePrincipal">
+    <configuration name="Config" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="br.Config" />
+      <module name="kafka-client" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConsumidorKafka" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="br.ConsumidorKafka" />
+      <module name="kafka-client" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FramePrincipal" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="br.FramePrincipal" />
+      <module name="kafka-client" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.FramePrincipal" />
+        <item itemvalue="Application.ConsumidorKafka" />
+        <item itemvalue="Application.Config" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="888a88f5-d468-4e1f-92a0-8b0edbf62e26" name="Default Changelist" comment="" />
+      <created>1590009076344</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1590009076344</updated>
+      <workItem from="1590009080284" duration="576000" />
+      <workItem from="1590009693500" duration="8079000" />
+      <workItem from="1590022025270" duration="123000" />
+      <workItem from="1590022215907" duration="213000" />
+      <workItem from="1590059873587" duration="3000000" />
+      <workItem from="1590063990255" duration="4807000" />
+      <workItem from="1590069912102" duration="1065000" />
+      <workItem from="1590079434954" duration="14011000" />
+      <workItem from="1590146652068" duration="379000" />
+      <workItem from="1590147932047" duration="14762000" />
+      <workItem from="1590175498349" duration="1868000" />
+      <workItem from="1590410619142" duration="1881000" />
+      <workItem from="1590413258604" duration="7353000" />
+      <workItem from="1590437711974" duration="689000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="416" y="91" key="#Plugins" timestamp="1590022428636">
+      <screen x="109" y="0" width="1427" height="864" />
+    </state>
+    <state x="416" y="91" key="#Plugins/109.0.1427.864@109.0.1427.864" timestamp="1590022428636" />
+    <state x="416" y="91" key="#Project_Structure" timestamp="1590070180354">
+      <screen x="109" y="0" width="1427" height="864" />
+    </state>
+    <state x="416" y="91" key="#Project_Structure/109.0.1427.864@109.0.1427.864" timestamp="1590070180354" />
+    <state x="629" y="148" key="#com.intellij.ide.util.MemberChooser" timestamp="1590106157441">
+      <screen x="109" y="0" width="1427" height="864" />
+    </state>
+    <state x="629" y="148" key="#com.intellij.ide.util.MemberChooser/109.0.1427.864@109.0.1427.864" timestamp="1590106157441" />
+    <state x="510" y="168" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1590412466963">
+      <screen x="109" y="0" width="1427" height="864" />
+    </state>
+    <state x="510" y="168" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/109.0.1427.864@109.0.1427.864" timestamp="1590412466963" />
+    <state x="469" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1590095262485">
+      <screen x="109" y="0" width="1427" height="864" />
+    </state>
+    <state x="469" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/109.0.1427.864@109.0.1427.864" timestamp="1590095262485" />
+    <state width="436" height="466" key="DebuggerActiveHint" timestamp="1590414122223">
+      <screen x="109" y="0" width="1427" height="864" />
+    </state>
+    <state width="436" height="466" key="DebuggerActiveHint/109.0.1427.864@109.0.1427.864" timestamp="1590414122223" />
+    <state x="604" y="187" key="FileChooserDialogImpl" timestamp="1590175613870">
+      <screen x="109" y="0" width="1427" height="864" />
+    </state>
+    <state x="604" y="187" key="FileChooserDialogImpl/109.0.1427.864@109.0.1427.864" timestamp="1590175613870" />
+    <state width="1369" height="148" key="GridCell.Tab.0.bottom" timestamp="1590434836402">
+      <screen x="109" y="0" width="1427" height="864" />
+    </state>
+    <state width="1369" height="148" key="GridCell.Tab.0.bottom/109.0.1427.864@109.0.1427.864" timestamp="1590434836402" />
+    <state width="1369" height="148" key="GridCell.Tab.0.center" timestamp="1590434836402">
+      <screen x="109" y="0" width="1427" height="864" />
+    </state>
+    <state width="1369" height="148" key="GridCell.Tab.0.center/109.0.1427.864@109.0.1427.864" timestamp="1590434836402" />
+    <state width="1369" height="148" key="GridCell.Tab.0.left" timestamp="1590434836402">
+      <screen x="109" y="0" width="1427" height="864" />
+    </state>
+    <state width="1369" height="148" key="GridCell.Tab.0.left/109.0.1427.864@109.0.1427.864" timestamp="1590434836402" />
+    <state width="1369" height="148" key="GridCell.Tab.0.right" timestamp="1590434836402">
+      <screen x="109" y="0" width="1427" height="864" />
+    </state>
+    <state width="1369" height="148" key="GridCell.Tab.0.right/109.0.1427.864@109.0.1427.864" timestamp="1590434836402" />
+    <state width="1369" height="148" key="GridCell.Tab.1.bottom" timestamp="1590434836403">
+      <screen x="109" y="0" width="1427" height="864" />
+    </state>
+    <state width="1369" height="148" key="GridCell.Tab.1.bottom/109.0.1427.864@109.0.1427.864" timestamp="1590434836403" />
+    <state width="1369" height="148" key="GridCell.Tab.1.center" timestamp="1590434836403">
+      <screen x="109" y="0" width="1427" height="864" />
+    </state>
+    <state width="1369" height="148" key="GridCell.Tab.1.center/109.0.1427.864@109.0.1427.864" timestamp="1590434836403" />
+    <state width="1369" height="148" key="GridCell.Tab.1.left" timestamp="1590434836402">
+      <screen x="109" y="0" width="1427" height="864" />
+    </state>
+    <state width="1369" height="148" key="GridCell.Tab.1.left/109.0.1427.864@109.0.1427.864" timestamp="1590434836402" />
+    <state width="1369" height="148" key="GridCell.Tab.1.right" timestamp="1590434836403">
+      <screen x="109" y="0" width="1427" height="864" />
+    </state>
+    <state width="1369" height="148" key="GridCell.Tab.1.right/109.0.1427.864@109.0.1427.864" timestamp="1590434836403" />
+    <state x="332" y="14" key="SettingsEditor" timestamp="1590413426201">
+      <screen x="109" y="0" width="1427" height="864" />
+    </state>
+    <state x="332" y="14" key="SettingsEditor/109.0.1427.864@109.0.1427.864" timestamp="1590413426201" />
+    <state x="216" y="100" width="1227" height="664" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1590175617850">
+      <screen x="109" y="0" width="1427" height="864" />
+    </state>
+    <state x="216" y="100" width="1227" height="664" key="com.intellij.history.integration.ui.views.FileHistoryDialog/109.0.1427.864@109.0.1427.864" timestamp="1590175617850" />
+    <state x="470" y="47" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1590173929148">
+      <screen x="109" y="0" width="1427" height="864" />
+    </state>
+    <state x="470" y="47" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/109.0.1427.864@109.0.1427.864" timestamp="1590173929148" />
+    <state x="202" y="93" width="1242" height="678" key="dock-window-1" timestamp="1590009642741">
+      <screen x="109" y="0" width="1427" height="864" />
+    </state>
+    <state x="202" y="93" width="1242" height="678" key="dock-window-1/109.0.1427.864@109.0.1427.864" timestamp="1590009642741" />
+    <state x="554" y="188" key="extract.method.dialog" timestamp="1590106374769">
+      <screen x="109" y="0" width="1427" height="864" />
+    </state>
+    <state x="554" y="188" key="extract.method.dialog/109.0.1427.864@109.0.1427.864" timestamp="1590106374769" />
+    <state x="525" y="164" width="609" height="536" key="find.popup" timestamp="1590441793257">
+      <screen x="109" y="0" width="1427" height="864" />
+    </state>
+    <state x="525" y="164" width="609" height="536" key="find.popup/109.0.1427.864@109.0.1427.864" timestamp="1590441793257" />
+    <state x="480" y="197" width="672" height="677" key="run.anything.popup" timestamp="1590174409111">
+      <screen x="109" y="0" width="1427" height="864" />
+    </state>
+    <state x="480" y="197" width="672" height="677" key="run.anything.popup/109.0.1427.864@109.0.1427.864" timestamp="1590174409111" />
+    <state x="486" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1590168009570">
+      <screen x="109" y="0" width="1427" height="864" />
+    </state>
+    <state x="486" y="181" width="672" height="678" key="search.everywhere.popup/109.0.1427.864@109.0.1427.864" timestamp="1590168009570" />
+  </component>
+</project>
