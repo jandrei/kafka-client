@@ -2,6 +2,8 @@ package br;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class FramePrincipal extends JFrame {
 
@@ -29,6 +31,13 @@ public class FramePrincipal extends JFrame {
 
         JSplitPane splitPane = new JSplitPane(SwingConstants.VERTICAL, painelComponentes1, painelComponentes2);
         splitPane.setDividerLocation(getWidth() / 2);
+        this.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                super.componentResized(e);
+                splitPane.setDividerLocation(getWidth() / 2);        
+            }
+        });
 
         tabbedPane.addTab("Send/Subscribes", splitPane);
         tabbedPane.addTab("Configs", new JPanel());
