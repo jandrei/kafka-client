@@ -2,11 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="888a88f5-d468-4e1f-92a0-8b0edbf62e26" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.MD" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/config.PNG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/kafka-client.PNG" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/ComboboxEnv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/ComboboxModelEnvironments.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/Consumidor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/IConsumidor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/ConsumidorKafka.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/ConsumidorKafka.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/FramePrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/FramePrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/PainelConsumidor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/PainelComponentes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/PainelProdutor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/ProdutorKafka.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +67,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="C:/workshop-devops/weblaf" />
+    <property name="last_opened_file_path" value="C:/kafka_2.12-2.5.0/bin/windows/kafka-run-class.bat" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -153,6 +156,10 @@
       <workItem from="1590410619142" duration="1881000" />
       <workItem from="1590413258604" duration="7353000" />
       <workItem from="1590437711974" duration="1401000" />
+      <workItem from="1590500519075" duration="1389000" />
+      <workItem from="1590504473808" duration="2795000" />
+      <workItem from="1590581316140" duration="2963000" />
+      <workItem from="1590667398579" duration="7575000" />
     </task>
     <servers />
   </component>
@@ -179,54 +186,58 @@
       <screen x="109" y="0" width="1427" height="864" />
     </state>
     <state x="510" y="168" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/109.0.1427.864@109.0.1427.864" timestamp="1590412466963" />
-    <state x="469" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1590095262485">
+    <state x="469" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1590689666466">
       <screen x="109" y="0" width="1427" height="864" />
     </state>
-    <state x="469" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/109.0.1427.864@109.0.1427.864" timestamp="1590095262485" />
-    <state width="436" height="466" key="DebuggerActiveHint" timestamp="1590414122223">
+    <state x="469" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/109.0.1427.864@109.0.1427.864" timestamp="1590689666466" />
+    <state width="454" height="466" key="DebuggerActiveHint" timestamp="1590690694795">
       <screen x="109" y="0" width="1427" height="864" />
     </state>
-    <state width="436" height="466" key="DebuggerActiveHint/109.0.1427.864@109.0.1427.864" timestamp="1590414122223" />
-    <state x="604" y="187" key="FileChooserDialogImpl" timestamp="1590175613870">
+    <state width="454" height="466" key="DebuggerActiveHint/109.0.1427.864@109.0.1427.864" timestamp="1590690694795" />
+    <state x="604" y="187" key="FileChooserDialogImpl" timestamp="1590668121225">
       <screen x="109" y="0" width="1427" height="864" />
     </state>
-    <state x="604" y="187" key="FileChooserDialogImpl/109.0.1427.864@109.0.1427.864" timestamp="1590175613870" />
-    <state width="1369" height="427" key="GridCell.Tab.0.bottom" timestamp="1590442216679">
+    <state x="604" y="187" key="FileChooserDialogImpl/109.0.1427.864@109.0.1427.864" timestamp="1590668121225" />
+    <state width="1385" height="179" key="GridCell.Tab.0.bottom" timestamp="1590691128792">
       <screen x="109" y="0" width="1427" height="864" />
     </state>
-    <state width="1369" height="427" key="GridCell.Tab.0.bottom/109.0.1427.864@109.0.1427.864" timestamp="1590442216679" />
-    <state width="1369" height="427" key="GridCell.Tab.0.center" timestamp="1590442216679">
+    <state width="1385" height="179" key="GridCell.Tab.0.bottom/109.0.1427.864@109.0.1427.864" timestamp="1590691128792" />
+    <state width="1385" height="179" key="GridCell.Tab.0.center" timestamp="1590691128792">
       <screen x="109" y="0" width="1427" height="864" />
     </state>
-    <state width="1369" height="427" key="GridCell.Tab.0.center/109.0.1427.864@109.0.1427.864" timestamp="1590442216679" />
-    <state width="1369" height="427" key="GridCell.Tab.0.left" timestamp="1590442216679">
+    <state width="1385" height="179" key="GridCell.Tab.0.center/109.0.1427.864@109.0.1427.864" timestamp="1590691128792" />
+    <state width="1385" height="179" key="GridCell.Tab.0.left" timestamp="1590691128792">
       <screen x="109" y="0" width="1427" height="864" />
     </state>
-    <state width="1369" height="427" key="GridCell.Tab.0.left/109.0.1427.864@109.0.1427.864" timestamp="1590442216679" />
-    <state width="1369" height="427" key="GridCell.Tab.0.right" timestamp="1590442216679">
+    <state width="1385" height="179" key="GridCell.Tab.0.left/109.0.1427.864@109.0.1427.864" timestamp="1590691128792" />
+    <state width="1385" height="179" key="GridCell.Tab.0.right" timestamp="1590691128792">
       <screen x="109" y="0" width="1427" height="864" />
     </state>
-    <state width="1369" height="427" key="GridCell.Tab.0.right/109.0.1427.864@109.0.1427.864" timestamp="1590442216679" />
-    <state width="1369" height="148" key="GridCell.Tab.1.bottom" timestamp="1590434836403">
+    <state width="1385" height="179" key="GridCell.Tab.0.right/109.0.1427.864@109.0.1427.864" timestamp="1590691128792" />
+    <state width="1385" height="222" key="GridCell.Tab.1.bottom" timestamp="1590690793694">
       <screen x="109" y="0" width="1427" height="864" />
     </state>
-    <state width="1369" height="148" key="GridCell.Tab.1.bottom/109.0.1427.864@109.0.1427.864" timestamp="1590434836403" />
-    <state width="1369" height="148" key="GridCell.Tab.1.center" timestamp="1590434836403">
+    <state width="1385" height="222" key="GridCell.Tab.1.bottom/109.0.1427.864@109.0.1427.864" timestamp="1590690793694" />
+    <state width="1385" height="222" key="GridCell.Tab.1.center" timestamp="1590690793694">
       <screen x="109" y="0" width="1427" height="864" />
     </state>
-    <state width="1369" height="148" key="GridCell.Tab.1.center/109.0.1427.864@109.0.1427.864" timestamp="1590434836403" />
-    <state width="1369" height="148" key="GridCell.Tab.1.left" timestamp="1590434836402">
+    <state width="1385" height="222" key="GridCell.Tab.1.center/109.0.1427.864@109.0.1427.864" timestamp="1590690793694" />
+    <state width="1385" height="222" key="GridCell.Tab.1.left" timestamp="1590690793694">
       <screen x="109" y="0" width="1427" height="864" />
     </state>
-    <state width="1369" height="148" key="GridCell.Tab.1.left/109.0.1427.864@109.0.1427.864" timestamp="1590434836402" />
-    <state width="1369" height="148" key="GridCell.Tab.1.right" timestamp="1590434836403">
+    <state width="1385" height="222" key="GridCell.Tab.1.left/109.0.1427.864@109.0.1427.864" timestamp="1590690793694" />
+    <state width="1385" height="222" key="GridCell.Tab.1.right" timestamp="1590690793694">
       <screen x="109" y="0" width="1427" height="864" />
     </state>
-    <state width="1369" height="148" key="GridCell.Tab.1.right/109.0.1427.864@109.0.1427.864" timestamp="1590434836403" />
+    <state width="1385" height="222" key="GridCell.Tab.1.right/109.0.1427.864@109.0.1427.864" timestamp="1590690793694" />
     <state x="332" y="14" key="SettingsEditor" timestamp="1590413426201">
       <screen x="109" y="0" width="1427" height="864" />
     </state>
     <state x="332" y="14" key="SettingsEditor/109.0.1427.864@109.0.1427.864" timestamp="1590413426201" />
+    <state width="713" height="432" key="XDebugger.FullValuePopup" timestamp="1590505353838">
+      <screen x="109" y="0" width="1427" height="864" />
+    </state>
+    <state width="713" height="432" key="XDebugger.FullValuePopup/109.0.1427.864@109.0.1427.864" timestamp="1590505353838" />
     <state x="216" y="100" width="1227" height="664" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1590175617850">
       <screen x="109" y="0" width="1427" height="864" />
     </state>
@@ -239,10 +250,10 @@
       <screen x="109" y="0" width="1427" height="864" />
     </state>
     <state x="202" y="93" width="1242" height="678" key="dock-window-1/109.0.1427.864@109.0.1427.864" timestamp="1590009642741" />
-    <state x="554" y="188" key="extract.method.dialog" timestamp="1590106374769">
+    <state x="554" y="188" key="extract.method.dialog" timestamp="1590689972728">
       <screen x="109" y="0" width="1427" height="864" />
     </state>
-    <state x="554" y="188" key="extract.method.dialog/109.0.1427.864@109.0.1427.864" timestamp="1590106374769" />
+    <state x="554" y="188" key="extract.method.dialog/109.0.1427.864@109.0.1427.864" timestamp="1590689972728" />
     <state x="525" y="164" width="609" height="536" key="find.popup" timestamp="1590442075961">
       <screen x="109" y="0" width="1427" height="864" />
     </state>
@@ -255,5 +266,12 @@
       <screen x="109" y="0" width="1427" height="864" />
     </state>
     <state x="486" y="181" width="672" height="678" key="search.everywhere.popup/109.0.1427.864@109.0.1427.864" timestamp="1590168009570" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="consumidor.brokers()" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

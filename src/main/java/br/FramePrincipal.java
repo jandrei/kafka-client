@@ -1,14 +1,12 @@
 package br;
 
-import net.miginfocom.swing.MigLayout;
-
 import javax.swing.*;
 import java.awt.*;
 
 public class FramePrincipal extends JFrame {
 
-    PainelConsumidor painelConsumidor1;
-    PainelConsumidor painelConsumidor2;
+    PainelComponentes painelComponentes1;
+    PainelComponentes painelComponentes2;
 
     public FramePrincipal() throws HeadlessException {
         super("Kafka Client");
@@ -21,17 +19,17 @@ public class FramePrincipal extends JFrame {
         setLayout(new BorderLayout());
 
         JTabbedPane tabbedPane = new JTabbedPane();
-        
-        
-        painelConsumidor1 = new PainelConsumidor();
-        painelConsumidor1.setMinimumSize(new Dimension(50, 50));
 
-        painelConsumidor2 = new PainelConsumidor();
-        painelConsumidor2.setMinimumSize(new Dimension(50, 50));
 
-        JSplitPane splitPane = new JSplitPane(SwingConstants.VERTICAL, painelConsumidor1, painelConsumidor2);
-        splitPane.setDividerLocation(getWidth()/2);
-        
+        painelComponentes1 = new PainelComponentes();
+        painelComponentes1.setMinimumSize(new Dimension(50, 50));
+
+        painelComponentes2 = new PainelComponentes();
+        painelComponentes2.setMinimumSize(new Dimension(50, 50));
+
+        JSplitPane splitPane = new JSplitPane(SwingConstants.VERTICAL, painelComponentes1, painelComponentes2);
+        splitPane.setDividerLocation(getWidth() / 2);
+
         tabbedPane.addTab("Send/Subscribes", splitPane);
         tabbedPane.addTab("Configs", new JPanel());
         add(tabbedPane, BorderLayout.CENTER);
