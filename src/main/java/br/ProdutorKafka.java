@@ -14,24 +14,27 @@ import java.util.UUID;
 
 public class ProdutorKafka {
 
-    private String brokers;
-    private List topicos;
     KafkaProducer kafkaProducer;
     Consumidor consumidor;
+    String actualBrokers = "";
 
     public ProdutorKafka(Consumidor consumidor) {
         this.consumidor = consumidor;
     }
 
     public void start() {
-        Map<String, String> config = new HashMap<>();
-        config.put("bootstrap.servers", consumidor.brokers());
-        config.put("key.serializer", "io.vertx.kafka.client.serialization.BufferSerializer");
-        config.put("value.serializer", "io.vertx.kafka.client.serialization.BufferSerializer");
-        config.put("acks", "1");
+        if (actualBrokers.isEmpty() || !actualBrokers.equals(consumidor.brokers())) {
+            actualBrokers = consumidor.brokers();
+            
+            Map<String, String> config = new HashMap<>();
+            config.put("bootstrap.servers", actualBrokers);
+            config.put("key.serializer", "io.vertx.kafka.client.serialization.BufferSerializer");
+            config.put("value.serializer", "io.vertx.kafka.client.serialization.BufferSerializer");
+            config.put("acks", "1");
 
-        Vertx vertx = Vertx.vertx();
-        kafkaProducer = KafkaProducer.create(vertx, config, String.class, String.class);
+            Vertx vertx = Vertx.vertx();
+            kafkaProducer = KafkaProducer.create(vertx, config, String.class, String.class);
+        }
     }
 
     public void send(String topic, String message) {
