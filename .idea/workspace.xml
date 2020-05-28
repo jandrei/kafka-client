@@ -3,13 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="888a88f5-d468-4e1f-92a0-8b0edbf62e26" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/ComboboxEnv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/ComboboxModelEnvironments.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/Consumidor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/IConsumidor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/ConsumidorKafka.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/ConsumidorKafka.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/FramePrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/FramePrincipal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/PainelConsumidor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/PainelComponentes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/PainelProdutor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/ProdutorKafka.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/br/FramePrincipal.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/FramePrincipal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +155,7 @@
       <workItem from="1590500519075" duration="1389000" />
       <workItem from="1590504473808" duration="2795000" />
       <workItem from="1590581316140" duration="2963000" />
-      <workItem from="1590667398579" duration="7575000" />
+      <workItem from="1590667398579" duration="9337000" />
     </task>
     <servers />
   </component>
@@ -178,10 +174,10 @@
       <screen x="109" y="0" width="1427" height="864" />
     </state>
     <state x="416" y="91" key="#Project_Structure/109.0.1427.864@109.0.1427.864" timestamp="1590070180354" />
-    <state x="629" y="148" key="#com.intellij.ide.util.MemberChooser" timestamp="1590106157441">
+    <state x="629" y="148" key="#com.intellij.ide.util.MemberChooser" timestamp="1590692163461">
       <screen x="109" y="0" width="1427" height="864" />
     </state>
-    <state x="629" y="148" key="#com.intellij.ide.util.MemberChooser/109.0.1427.864@109.0.1427.864" timestamp="1590106157441" />
+    <state x="629" y="148" key="#com.intellij.ide.util.MemberChooser/109.0.1427.864@109.0.1427.864" timestamp="1590692163461" />
     <state x="510" y="168" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1590412466963">
       <screen x="109" y="0" width="1427" height="864" />
     </state>
@@ -198,22 +194,22 @@
       <screen x="109" y="0" width="1427" height="864" />
     </state>
     <state x="604" y="187" key="FileChooserDialogImpl/109.0.1427.864@109.0.1427.864" timestamp="1590668121225" />
-    <state width="1385" height="179" key="GridCell.Tab.0.bottom" timestamp="1590691128792">
+    <state width="1385" height="118" key="GridCell.Tab.0.bottom" timestamp="1590693723723">
       <screen x="109" y="0" width="1427" height="864" />
     </state>
-    <state width="1385" height="179" key="GridCell.Tab.0.bottom/109.0.1427.864@109.0.1427.864" timestamp="1590691128792" />
-    <state width="1385" height="179" key="GridCell.Tab.0.center" timestamp="1590691128792">
+    <state width="1385" height="118" key="GridCell.Tab.0.bottom/109.0.1427.864@109.0.1427.864" timestamp="1590693723723" />
+    <state width="1385" height="118" key="GridCell.Tab.0.center" timestamp="1590693723721">
       <screen x="109" y="0" width="1427" height="864" />
     </state>
-    <state width="1385" height="179" key="GridCell.Tab.0.center/109.0.1427.864@109.0.1427.864" timestamp="1590691128792" />
-    <state width="1385" height="179" key="GridCell.Tab.0.left" timestamp="1590691128792">
+    <state width="1385" height="118" key="GridCell.Tab.0.center/109.0.1427.864@109.0.1427.864" timestamp="1590693723721" />
+    <state width="1385" height="118" key="GridCell.Tab.0.left" timestamp="1590693723720">
       <screen x="109" y="0" width="1427" height="864" />
     </state>
-    <state width="1385" height="179" key="GridCell.Tab.0.left/109.0.1427.864@109.0.1427.864" timestamp="1590691128792" />
-    <state width="1385" height="179" key="GridCell.Tab.0.right" timestamp="1590691128792">
+    <state width="1385" height="118" key="GridCell.Tab.0.left/109.0.1427.864@109.0.1427.864" timestamp="1590693723720" />
+    <state width="1385" height="118" key="GridCell.Tab.0.right" timestamp="1590693723722">
       <screen x="109" y="0" width="1427" height="864" />
     </state>
-    <state width="1385" height="179" key="GridCell.Tab.0.right/109.0.1427.864@109.0.1427.864" timestamp="1590691128792" />
+    <state width="1385" height="118" key="GridCell.Tab.0.right/109.0.1427.864@109.0.1427.864" timestamp="1590693723722" />
     <state width="1385" height="222" key="GridCell.Tab.1.bottom" timestamp="1590690793694">
       <screen x="109" y="0" width="1427" height="864" />
     </state>
