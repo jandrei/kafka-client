@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.math.BigDecimal;
 
 public class FramePrincipal extends JFrame {
 
@@ -35,7 +36,7 @@ public class FramePrincipal extends JFrame {
             @Override
             public void componentResized(ComponentEvent e) {
                 super.componentResized(e);
-                splitPane.setDividerLocation(getWidth() / 2);        
+                splitPane.setDividerLocation(getWidth() / 2);
             }
         });
 
@@ -45,7 +46,6 @@ public class FramePrincipal extends JFrame {
     }
 
     public static void main(String[] args) {
-
         SwingUtilities.invokeLater(() -> new FramePrincipal().setVisible(true));
     }
 }

@@ -1,5 +1,7 @@
 package br;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import io.vertx.kafka.client.common.PartitionInfo;
 import io.vertx.kafka.client.consumer.KafkaConsumerRecord;
 import net.miginfocom.swing.MigLayout;
@@ -7,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import javax.swing.*;
 import java.awt.*;
+import java.lang.reflect.Type;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -36,7 +39,7 @@ public class PainelComponentes extends JPanel implements IConsumidor {
     JComboBox jComboBoxDesde;
 
     Map<String, List<String>> mapTopicosLocal = new HashMap<>();
-    
+
     ConsumidorKafka consumidorKafka;
 
 
@@ -130,12 +133,27 @@ public class PainelComponentes extends JPanel implements IConsumidor {
         buttonProducerMessage.addActionListener(e -> SwingUtilities.invokeLater(() -> {
             consumidorKafka.createProducer();
             String mensagem = textAreaProdutor.getText();
-            if (mensagem.contains("#UUID")) {
-                mensagem = StringUtils.replace(mensagem, "#UUID", UUID.randomUUID().toString());
-            }
-            textAreaLogEnviadas.setText(mensagem);
+            Gson gson = new Gson();
+            Type empMapType = new TypeToken<List<Map>>() {}.getType();
+            
+            List<Map> mensagens = gson.fromJson(mensagem, empMapType);
+            
+            String mensagensEnviadas = "";
 
-            consumidorKafka.send(this.topics().stream().findFirst().get(), mensagem);
+            for (Map mapMsg : mensagens) {
+                String msg = new Gson().toJson(mapMsg);
+                if (StringUtils.isBlank(msg)){
+                    continue;
+                }
+                if (msg.contains("#UUID")) {
+                    msg = StringUtils.replace(msg, "#UUID", UUID.randomUUID().toString());
+                }
+                mensagensEnviadas += msg + "\n";
+                
+                consumidorKafka.send(this.topics().stream().findFirst().get(), msg);
+            }
+
+            textAreaLogEnviadas.append(mensagensEnviadas);
         }));
     }
 
