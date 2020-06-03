@@ -120,7 +120,10 @@ public class PainelComponentes extends JPanel implements IConsumidor {
         });
 
         //actions
-        buttonSubscribe.addActionListener(e -> SwingUtilities.invokeLater(() -> consumidorKafka.subscribe()));
+        buttonSubscribe.addActionListener(e -> SwingUtilities.invokeLater(() -> {
+            textAreaMensagens.setText("");
+            consumidorKafka.subscribe();
+        }));
         buttonUnsubscribe.addActionListener(e -> SwingUtilities.invokeLater(() -> consumidorKafka.unsubcribe()));
 
         scrollPaneTextArea.getVerticalScrollBar().addAdjustmentListener(e -> {
@@ -131,30 +134,42 @@ public class PainelComponentes extends JPanel implements IConsumidor {
 
     private void actionsProducer() {
         buttonProducerMessage.addActionListener(e -> SwingUtilities.invokeLater(() -> {
-            consumidorKafka.createProducer();
-            String mensagem = textAreaProdutor.getText();
-            Gson gson = new Gson();
-            Type empMapType = new TypeToken<List<Map>>() {}.getType();
-            
-            List<Map> mensagens = gson.fromJson(mensagem, empMapType);
-            
-            String mensagensEnviadas = "";
-
-            for (Map mapMsg : mensagens) {
-                String msg = new Gson().toJson(mapMsg);
-                if (StringUtils.isBlank(msg)){
-                    continue;
-                }
-                if (msg.contains("#UUID")) {
-                    msg = StringUtils.replace(msg, "#UUID", UUID.randomUUID().toString());
-                }
-                mensagensEnviadas += msg + "\n";
-                
-                consumidorKafka.send(this.topics().stream().findFirst().get(), msg);
+            try {
+                consumidorKafka.createProducer();
+                enviaMensagem();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage());
             }
-
-            textAreaLogEnviadas.append(mensagensEnviadas);
         }));
+    }
+
+    private void enviaMensagem() {
+        String mensagem = textAreaProdutor.getText();
+        if (!mensagem.trim().startsWith("[")) {
+            mensagem = "[" + mensagem + "]";
+        }
+        Gson gson = new Gson();
+        Type empMapType = new TypeToken<List<Map>>() {
+        }.getType();
+
+        List<Map> mensagens = gson.fromJson(mensagem, empMapType);
+
+        String mensagensEnviadas = "";
+
+        for (Map mapMsg : mensagens) {
+            String msg = new Gson().toJson(mapMsg);
+            if (StringUtils.isBlank(msg)) {
+                continue;
+            }
+            if (msg.contains("#UUID")) {
+                msg = StringUtils.replace(msg, "#UUID", UUID.randomUUID().toString());
+            }
+            mensagensEnviadas += msg + "\n";
+
+            consumidorKafka.send(this.topics().stream().findFirst().get(), msg);
+        }
+
+        textAreaLogEnviadas.append(mensagensEnviadas);
     }
 
 
