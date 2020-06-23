@@ -12,6 +12,7 @@ import java.awt.*;
 import java.lang.reflect.Type;
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.*;
@@ -163,6 +164,12 @@ public class PainelComponentes extends JPanel implements IConsumidor {
             }
             if (msg.contains("#UUID")) {
                 msg = StringUtils.replace(msg, "#UUID", UUID.randomUUID().toString());
+            }
+            if (msg.contains("#ZONEDDATETIMENOW")) {
+                msg = StringUtils.replace(msg, "#ZONEDDATETIMENOW", ZonedDateTime.now().toString());
+            }
+            if (msg.contains("#LOCALDATETIMENOW")) {
+                msg = StringUtils.replace(msg, "#LOCALDATETIMENOW", LocalDateTime.now().toString());
             }
             mensagensEnviadas += msg + "\n";
 
