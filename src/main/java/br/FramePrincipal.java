@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.math.BigDecimal;
 
 public class FramePrincipal extends JFrame {
 
@@ -41,7 +40,7 @@ public class FramePrincipal extends JFrame {
         });
 
         tabbedPane.addTab("Send/Subscribes", splitPane);
-        tabbedPane.addTab("Configs", new JPanel());
+        tabbedPane.addTab("Configs", new Painelconfig());
         add(tabbedPane, BorderLayout.CENTER);
     }
 

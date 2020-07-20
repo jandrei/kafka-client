@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import javax.swing.*;
 import java.awt.*;
 import java.lang.reflect.Type;
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -34,9 +35,9 @@ public class PainelComponentes extends JPanel implements IConsumidor {
     JButton buttonUnsubscribe;
     JButton buttonProducerMessage;
 
-    JComboBox jComboBoxEnv;
+    JComboBox jComboBoxEnvs;
     JComboBox jComboBoxTopicos;
-    JComboBox jComboBoxDesde;
+    JComboBox jComboBoxLatestEarliest;
 
     Map<String, List<String>> mapTopicosLocal = new HashMap<>();
 
@@ -61,9 +62,9 @@ public class PainelComponentes extends JPanel implements IConsumidor {
 
     private void painelConsumer() {
         add(new JLabel("Ambiente:"));
-        jComboBoxEnv = new JComboBox(new ComboboxModelEnvironments());
-        jComboBoxEnv.setPreferredSize(new Dimension(100, 15));
-        this.add(jComboBoxEnv, "left");
+        jComboBoxEnvs = new JComboBox(new ComboboxModelEnvironments());
+        jComboBoxEnvs.setPreferredSize(new Dimension(100, 15));
+        this.add(jComboBoxEnvs, "left");
 
         this.add(new JLabel("Topicos:"), "right");
         jComboBoxTopicos = new JComboBox(new String[]{});
@@ -77,8 +78,8 @@ public class PainelComponentes extends JPanel implements IConsumidor {
         this.add(buttonUnsubscribe);
 
         this.add(new JLabel("Desde: "), "right");
-        jComboBoxDesde = new JComboBox(new String[]{"latest", "earliest"});
-        this.add(jComboBoxDesde, "left, wrap");
+        jComboBoxLatestEarliest = new JComboBox(new String[]{"latest", "earliest"});
+        this.add(jComboBoxLatestEarliest, "left, wrap");
 
         textAreaMensagens = new JTextArea(15, 200);
         textAreaMensagens.setEditable(false);
@@ -103,8 +104,8 @@ public class PainelComponentes extends JPanel implements IConsumidor {
     }
 
     private void actionsAndEventsConsumer() {
-        jComboBoxEnv.addActionListener(e -> {
-            if (jComboBoxEnv.getSelectedIndex() > 0) {
+        jComboBoxEnvs.addActionListener(e -> {
+            if (jComboBoxEnvs.getSelectedIndex() > 0) {
                 SwingUtilities.invokeLater(() -> {
                     textAreaMensagens.setText("");
                     consumidorKafka.createConsumer(true);
@@ -112,7 +113,7 @@ public class PainelComponentes extends JPanel implements IConsumidor {
             }
         });
 
-        jComboBoxDesde.addActionListener(e -> {
+        jComboBoxLatestEarliest.addActionListener(e -> {
             SwingUtilities.invokeLater(() -> {
                 consumidorKafka.unsubcribe();
                 consumidorKafka.createConsumer(false);
@@ -178,7 +179,7 @@ public class PainelComponentes extends JPanel implements IConsumidor {
         LocalDateTime triggerTime =
                 LocalDateTime.ofInstant(Instant.ofEpochMilli(row.timestamp()),
                         TimeZone.getDefault().toZoneId());
-        String info = "   " + jComboBoxEnv.getSelectedItem().toString() + " - " + row.topic() + " - " + row.partition() + " - " + triggerTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) + "\n";
+        String info = "   " + jComboBoxEnvs.getSelectedItem().toString() + " - " + row.topic() + " - " + row.partition() + " - " + triggerTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) + "\n";
         String mensagem = "   " + row.value();
         textAreaMensagens.append(info + mensagem + "\n\n");
 
@@ -198,16 +199,14 @@ public class PainelComponentes extends JPanel implements IConsumidor {
     public void registerPartitions(Map<String, List<PartitionInfo>> map) {
         SwingUtilities.invokeLater(() -> {
             jComboBoxTopicos.removeAllItems();
-            if (!mapTopicosLocal.containsKey(jComboBoxEnv.getSelectedItem().toString())) {
-                mapTopicosLocal.put(jComboBoxEnv.getSelectedItem().toString(),
-                        map.entrySet()
-                                .stream()
-                                .map(Map.Entry::getKey)
-                                .sorted()
-                                .filter(s -> s.toLowerCase().contains("v1"))
-                                .collect(Collectors.toList()));
-            }
-            for (String key : mapTopicosLocal.get(jComboBoxEnv.getSelectedItem().toString())) {
+            mapTopicosLocal.put(jComboBoxEnvs.getSelectedItem().toString(),
+                    map.entrySet()
+                            .stream()
+                            .map(Map.Entry::getKey)
+                            .sorted()
+                            .collect(Collectors.toList()));
+            
+            for (String key : mapTopicosLocal.get(jComboBoxEnvs.getSelectedItem().toString())) {
                 jComboBoxTopicos.addItem(key);
             }
         });
@@ -216,10 +215,10 @@ public class PainelComponentes extends JPanel implements IConsumidor {
 
     @Override
     public String brokers() {
-        if (jComboBoxEnv.getSelectedIndex() < 0)
+        if (jComboBoxEnvs.getSelectedIndex() < 0)
             return "";
 
-        return ((ComboboxModelEnvironments.ComboItem) jComboBoxEnv.getSelectedItem()).brokers;
+        return ((ComboboxModelEnvironments.ComboItem) jComboBoxEnvs.getSelectedItem()).brokers;
     }
 
     @Override
@@ -234,6 +233,13 @@ public class PainelComponentes extends JPanel implements IConsumidor {
 
     @Override
     public String desde() {
-        return jComboBoxDesde.getSelectedItem().toString();
+        return jComboBoxLatestEarliest.getSelectedItem().toString();
+    }
+
+    public static void main(String[] args) {
+        double enois = 3.21;
+        BigDecimal amount = new BigDecimal(enois);
+        System.out.println(amount);
+        System.out.println(amount.doubleValue());
     }
 }

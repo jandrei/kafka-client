@@ -15,9 +15,9 @@ import java.util.Map;
 public class Config {
 
     private static Config INSTANCE;
-    private String userHome = System.getProperty("user.home");
-    private final String CONFIGNAME = ".custom-kafka-client.json";
-    private final File arquivoProperties = new File(userHome.concat(File.separator).concat(CONFIGNAME));
+    private static String userHome = System.getProperty("user.home");
+    public static final String CONFIGNAME = ".custom-kafka-client.json";
+    public static final File arquivoProperties = new File(userHome.concat(File.separator).concat(CONFIGNAME));
     private Map props = new HashMap<>();
 
     private Config() {
