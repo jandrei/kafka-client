@@ -2,6 +2,7 @@ package br;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import io.vertx.kafka.client.common.PartitionInfo;
 import io.vertx.kafka.client.consumer.KafkaConsumerRecord;
 import net.miginfocom.swing.MigLayout;
 import org.apache.commons.lang3.StringUtils;
@@ -210,7 +211,7 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
                             .map(Map.Entry::getKey)
                             .sorted()
                             .collect(Collectors.toList()));
-            
+
             for (String key : mapTopicosLocal.get(jComboBoxEnvs.getSelectedItem().toString())) {
                 jComboBoxTopicos.addItem(key);
             }
@@ -240,5 +241,5 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
     public String fetchSince() {
         return jComboBoxLatestEarliest.getSelectedItem().toString();
     }
-    
+
 }
