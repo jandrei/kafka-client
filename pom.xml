@@ -5,10 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>kafka-client</artifactId>
+    <artifactId>kafkaConfiguration-client</artifactId>
     <version>1.3-SNAPSHOT</version>
 
     <properties>
+        <junit.jupiter.version>5.3.0</junit.jupiter.version>
         <java.version>11</java.version>
     </properties>
 
@@ -21,7 +22,7 @@
             <version>5.2</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/io.vertx/vertx-kafka-client -->
+        <!-- https://mvnrepository.com/artifact/io.vertx/vertx-kafkaConfiguration-client -->
         <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-kafka-client</artifactId>
@@ -38,6 +39,31 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.10</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>2.22.0</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>

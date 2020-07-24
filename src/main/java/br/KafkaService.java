@@ -9,45 +9,47 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class ConsumidorKafka {
+public class KafkaService {
 
     KafkaConsumer<String, String> kafkaConsumer;
-    IConsumidor iConsumidor;
+    KafkaConfiguration kafkaConfiguration;
     KafkaProducer kafkaProducer;
     String actualBrokers = "";
     Vertx vertx;
 
-    public ConsumidorKafka(IConsumidor iConsumidor) {
-        this.iConsumidor = iConsumidor;
+    public KafkaService(KafkaConfiguration kafkaConfiguration) {
+        this.kafkaConfiguration = kafkaConfiguration;
         this.vertx = Vertx.vertx();
     }
 
 
     public void createConsumer(boolean atualizaComboTopicos) {
         Map<String, String> config = new HashMap<>();
-        config.put("bootstrap.servers", iConsumidor.brokers());
+        config.put("bootstrap.servers", kafkaConfiguration.getBrokers());
         config.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         config.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         config.put("group.id", "GRUPOLOCAL-"+UUID.randomUUID().toString());
-        config.put("auto.offset.reset", iConsumidor.desde());
+        config.put("auto.offset.reset", kafkaConfiguration.fetchSince());
         config.put("enable.auto.commit", "false");
 
         vertx = Vertx.vertx();
         kafkaConsumer = KafkaConsumer.create(vertx, config);
-        kafkaConsumer.handler(row -> iConsumidor.handler(row));
+        kafkaConsumer.handler(row -> kafkaConfiguration.handleRow(row));
 
         if (atualizaComboTopicos) {
             //ler informacoes dos topicos
             kafkaConsumer.listTopics(ar -> {
-                if (ar.succeeded()) iConsumidor.registerPartitions(ar.result());
+                if (ar.succeeded()) kafkaConfiguration.callbackFechTopics(ar.result());
             });
         }
     }
+    
+    
 
     public void subscribe() {
         if (kafkaConsumer != null) {
             kafkaConsumer.unsubscribe();
-            kafkaConsumer.subscribe(iConsumidor.topics());
+            kafkaConsumer.subscribe(kafkaConfiguration.getTopics());
         }
     }
 
@@ -59,8 +61,8 @@ public class ConsumidorKafka {
 
 
     public void createProducer() {
-        if (actualBrokers.isEmpty() || !actualBrokers.equals(iConsumidor.brokers())) {
-            actualBrokers = iConsumidor.brokers();
+        if (actualBrokers.isEmpty() || !actualBrokers.equals(kafkaConfiguration.getBrokers())) {
+            actualBrokers = kafkaConfiguration.getBrokers();
 
             Map<String, String> config = new HashMap<>();
             config.put("bootstrap.servers", actualBrokers);

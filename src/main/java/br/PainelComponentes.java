@@ -2,7 +2,6 @@ package br;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import io.vertx.kafka.client.common.PartitionInfo;
 import io.vertx.kafka.client.consumer.KafkaConsumerRecord;
 import net.miginfocom.swing.MigLayout;
 import org.apache.commons.lang3.StringUtils;
@@ -10,7 +9,6 @@ import org.apache.commons.lang3.StringUtils;
 import javax.swing.*;
 import java.awt.*;
 import java.lang.reflect.Type;
-import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
@@ -19,7 +17,7 @@ import java.util.List;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class PainelComponentes extends JPanel implements IConsumidor {
+public class PainelComponentes extends JPanel implements KafkaConfiguration {
 
     JTextArea textAreaMensagens;
     JTextArea textAreaProdutor;
@@ -42,7 +40,7 @@ public class PainelComponentes extends JPanel implements IConsumidor {
 
     Map<String, List<String>> mapTopicosLocal = new HashMap<>();
 
-    ConsumidorKafka consumidorKafka;
+    KafkaService kafkaService;
 
 
     public PainelComponentes() {
@@ -53,7 +51,7 @@ public class PainelComponentes extends JPanel implements IConsumidor {
         painelConsumer();
         painelProducer();
 
-        consumidorKafka = new ConsumidorKafka(this);
+        kafkaService = new KafkaService(this);
 
         //actions
         actionsProducer();
@@ -109,24 +107,24 @@ public class PainelComponentes extends JPanel implements IConsumidor {
             if (jComboBoxEnvs.getSelectedIndex() > 0) {
                 SwingUtilities.invokeLater(() -> {
                     textAreaMensagens.setText("");
-                    consumidorKafka.createConsumer(true);
+                    kafkaService.createConsumer(true);
                 });
             }
         });
 
         jComboBoxLatestEarliest.addActionListener(e -> {
             SwingUtilities.invokeLater(() -> {
-                consumidorKafka.unsubcribe();
-                consumidorKafka.createConsumer(false);
+                kafkaService.unsubcribe();
+                kafkaService.createConsumer(false);
             });
         });
 
         //actions
         buttonSubscribe.addActionListener(e -> SwingUtilities.invokeLater(() -> {
             textAreaMensagens.setText("");
-            consumidorKafka.subscribe();
+            kafkaService.subscribe();
         }));
-        buttonUnsubscribe.addActionListener(e -> SwingUtilities.invokeLater(() -> consumidorKafka.unsubcribe()));
+        buttonUnsubscribe.addActionListener(e -> SwingUtilities.invokeLater(() -> kafkaService.unsubcribe()));
 
         scrollPaneTextArea.getVerticalScrollBar().addAdjustmentListener(e -> {
             posicaoAtualScrol = e.getValue();
@@ -137,7 +135,7 @@ public class PainelComponentes extends JPanel implements IConsumidor {
     private void actionsProducer() {
         buttonProducerMessage.addActionListener(e -> SwingUtilities.invokeLater(() -> {
             try {
-                consumidorKafka.createProducer();
+                kafkaService.createProducer();
                 enviaMensagem();
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage());
@@ -174,7 +172,7 @@ public class PainelComponentes extends JPanel implements IConsumidor {
             }
             mensagensEnviadas += msg + "\n";
 
-            consumidorKafka.send(this.topics().stream().findFirst().get(), msg);
+            kafkaService.send(this.getTopics().stream().findFirst().get(), msg);
         }
 
         textAreaLogEnviadas.append(mensagensEnviadas);
@@ -182,7 +180,7 @@ public class PainelComponentes extends JPanel implements IConsumidor {
 
 
     @Override
-    public void handler(KafkaConsumerRecord<String, String> row) {
+    public void handleRow(KafkaConsumerRecord<String, String> row) {
         LocalDateTime triggerTime =
                 LocalDateTime.ofInstant(Instant.ofEpochMilli(row.timestamp()),
                         TimeZone.getDefault().toZoneId());
@@ -203,7 +201,7 @@ public class PainelComponentes extends JPanel implements IConsumidor {
     }
 
     @Override
-    public void registerPartitions(Map<String, List<PartitionInfo>> map) {
+    public void callbackFechTopics(Map<String, List<PartitionInfo>> map) {
         SwingUtilities.invokeLater(() -> {
             jComboBoxTopicos.removeAllItems();
             mapTopicosLocal.put(jComboBoxEnvs.getSelectedItem().toString(),
@@ -221,7 +219,7 @@ public class PainelComponentes extends JPanel implements IConsumidor {
     }
 
     @Override
-    public String brokers() {
+    public String getBrokers() {
         if (jComboBoxEnvs.getSelectedIndex() < 0)
             return "";
 
@@ -229,7 +227,7 @@ public class PainelComponentes extends JPanel implements IConsumidor {
     }
 
     @Override
-    public Set<String> topics() {
+    public Set<String> getTopics() {
         if (jComboBoxTopicos.getSelectedIndex() < 0) {
             return new HashSet<>();
         }
@@ -239,14 +237,8 @@ public class PainelComponentes extends JPanel implements IConsumidor {
     }
 
     @Override
-    public String desde() {
+    public String fetchSince() {
         return jComboBoxLatestEarliest.getSelectedItem().toString();
     }
-
-    public static void main(String[] args) {
-        double enois = 3.21;
-        BigDecimal amount = new BigDecimal(enois);
-        System.out.println(amount);
-        System.out.println(amount.doubleValue());
-    }
+    
 }
