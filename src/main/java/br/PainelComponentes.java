@@ -16,6 +16,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class PainelComponentes extends JPanel implements KafkaConfiguration {
@@ -23,6 +24,8 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
     JTextArea textAreaMensagens;
     JTextArea textAreaProdutor;
     JTextArea textAreaLogEnviadas;
+    JTextField textFieldFiltro;
+    JLabel jlabelMessagesFounded;
 
     JScrollPane scrollPaneLogEnviadas;
     JScrollPane scrollPaneProdutor;
@@ -42,7 +45,8 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
     Map<String, List<String>> mapTopicosLocal = new HashMap<>();
 
     KafkaService kafkaService;
-
+    AtomicInteger msgTotal = new AtomicInteger();
+    AtomicInteger msgFiltradas = new AtomicInteger();
 
     public PainelComponentes() {
         super();
@@ -69,7 +73,7 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
         this.add(new JLabel("Topicos:"), "right");
         jComboBoxTopicos = new JComboBox(new String[]{});
         jComboBoxTopicos.setPreferredSize(new Dimension(300, 15));
-        this.add(jComboBoxTopicos, "left, wrap");
+        this.add(jComboBoxTopicos, "left, span 4, wrap");
 
 
         buttonSubscribe = new JButton("SUBSCRIBE");
@@ -79,12 +83,21 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
 
         this.add(new JLabel("Desde: "), "right");
         jComboBoxLatestEarliest = new JComboBox(new String[]{"latest", "earliest"});
-        this.add(jComboBoxLatestEarliest, "left, wrap");
+        this.add(jComboBoxLatestEarliest, "left");
+
+        this.add(new JLabel("Filtro: "), "right");
+        textFieldFiltro = new JTextField();
+        textFieldFiltro.setMinimumSize(new Dimension(200, 10));
+        this.add(this.textFieldFiltro, "left, wrap");
 
         textAreaMensagens = new JTextArea(15, 200);
         textAreaMensagens.setEditable(false);
         scrollPaneTextArea = new JScrollPane(textAreaMensagens);
-        this.add(scrollPaneTextArea, "span 4, wrap");
+        this.add(scrollPaneTextArea, "span 7, wrap");
+        
+        jlabelMessagesFounded = new JLabel();
+        jlabelMessagesFounded.setMinimumSize(new Dimension(300, 10));
+        this.add(this.jlabelMessagesFounded, "span 7, wrap");
     }
 
     private void painelProducer() {
@@ -95,12 +108,12 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
 
         textAreaProdutor = new JTextArea(15, 200);
         scrollPaneProdutor = new JScrollPane(textAreaProdutor);
-        this.add(scrollPaneProdutor, "span 4, wrap");
+        this.add(scrollPaneProdutor, "span 7, wrap");
 
         textAreaLogEnviadas = new JTextArea(10, 200);
         textAreaLogEnviadas.setEditable(false);
         scrollPaneLogEnviadas = new JScrollPane(textAreaLogEnviadas);
-        this.add(scrollPaneLogEnviadas, "span 4");
+        this.add(scrollPaneLogEnviadas, "span 7");
     }
 
     private void actionsAndEventsConsumer() {
@@ -123,7 +136,11 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
         //actions
         buttonSubscribe.addActionListener(e -> SwingUtilities.invokeLater(() -> {
             textAreaMensagens.setText("");
+            msgTotal.set(0);
+            msgFiltradas.set(0);
+
             kafkaService.subscribe();
+
         }));
         buttonUnsubscribe.addActionListener(e -> SwingUtilities.invokeLater(() -> kafkaService.unsubcribe()));
 
@@ -182,11 +199,23 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
 
     @Override
     public void handleRow(KafkaConsumerRecord<String, String> row) {
+        jlabelMessagesFounded.setText("total= " + msgTotal.incrementAndGet() + ", filtradas="+msgFiltradas.get());
+
         LocalDateTime triggerTime =
                 LocalDateTime.ofInstant(Instant.ofEpochMilli(row.timestamp()),
                         TimeZone.getDefault().toZoneId());
         String info = "   " + jComboBoxEnvs.getSelectedItem().toString() + " - " + row.topic() + " - " + row.partition() + " - " + triggerTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) + "\n";
         String mensagem = "   " + row.value();
+
+        //se tem filtro
+        if (!textFieldFiltro.getText().trim().isEmpty()) {
+            //se filtro contains na mensagem
+            if (!mensagem.toLowerCase().contains(textFieldFiltro.getText().toLowerCase())) {
+                return;
+            }
+            jlabelMessagesFounded.setText("total= " + msgTotal.get() + ", filtradas="+msgFiltradas.incrementAndGet());
+        }
+
         textAreaMensagens.append(info + mensagem + "\n\n");
 
         if (posicaoAtualScrol >= posicaoMaximaScrol) {
