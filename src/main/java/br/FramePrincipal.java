@@ -46,6 +46,7 @@ public class FramePrincipal extends JFrame {
     }
 
     public static void main(String[] args) {
+        javax.swing.ToolTipManager.sharedInstance().setDismissDelay(100000);
         SwingUtilities.invokeLater(() -> new FramePrincipal().setVisible(true));
     }
 }

@@ -42,7 +42,7 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
     JComboBox jComboBoxTopicos;
     JComboBox jComboBoxLatestEarliest;
 
-    Map<String, List<String>> mapTopicosLocal = new HashMap<>();
+    Map<String, List<ItemComboboxTopics>> mapTopicosLocal = new HashMap<>();
 
     KafkaService kafkaService;
     AtomicInteger msgTotal = new AtomicInteger();
@@ -94,7 +94,7 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
         textAreaMensagens.setEditable(false);
         scrollPaneTextArea = new JScrollPane(textAreaMensagens);
         this.add(scrollPaneTextArea, "span 7, wrap");
-        
+
         jlabelMessagesFounded = new JLabel();
         jlabelMessagesFounded.setMinimumSize(new Dimension(300, 10));
         this.add(this.jlabelMessagesFounded, "span 7, wrap");
@@ -132,15 +132,22 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
                 kafkaService.createConsumer(false);
             });
         });
+        
+        jComboBoxTopicos.addActionListener(e->{
+            SwingUtilities.invokeLater(() -> {
+                jComboBoxTopicos.setToolTipText(criaTooltipTopics());
+            });
+        });
 
         //actions
         buttonSubscribe.addActionListener(e -> SwingUtilities.invokeLater(() -> {
             textAreaMensagens.setText("");
             msgTotal.set(0);
             msgFiltradas.set(0);
+            jlabelMessagesFounded.setText("total= 0, filtradas= 0");
+            
 
             kafkaService.subscribe();
-
         }));
         buttonUnsubscribe.addActionListener(e -> SwingUtilities.invokeLater(() -> kafkaService.unsubcribe()));
 
@@ -148,6 +155,37 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
             posicaoAtualScrol = e.getValue();
             posicaoMaximaScrol = Math.max(posicaoAtualScrol, posicaoMaximaScrol);
         });
+    }
+
+    private String criaTooltipTopics() {
+        if (jComboBoxTopicos.getSelectedItem() == null) {
+            return "";
+        }
+        ItemComboboxTopics combo = (ItemComboboxTopics) jComboBoxTopicos.getSelectedItem();
+
+        StringBuilder tooltip = new StringBuilder();
+        AtomicInteger indice = new AtomicInteger();
+        combo.getPartitionInfos().forEach(info -> {
+            tooltip.append("<html><body>" +
+                    "Partition=" + info.getPartition() + "<br>" +
+                    "Lider.host=" + info.getLeader().getHost() + "<br>" +
+                    "Lider.port=" + info.getLeader().getPort() + "<br>" +
+                    "Lider.id=" + info.getLeader().getId() + "<br>" +
+                    "Replicas.size=" + info.getReplicas().size() + "<br>" +
+                    "Replicas=(" + info.getReplicas().stream()
+                    .map(node -> {
+                        indice.incrementAndGet();
+                        String identacao = "&nbsp;&nbsp;&nbsp;&nbsp;";
+                        return "<br>" +
+                                identacao+"Replicas["+indice.get()+"].host=" + node.getHost() + "<br>" +
+                                identacao+"Replicas["+indice.get()+"].port=" + node.getPort() + "<br>" +
+                                identacao+"Replicas["+indice.get()+"].id=" + node.getId() + "<br>";
+                    }).collect(Collectors.joining()) + ")<br>" +
+
+                    "</body></html>");
+        });
+
+        return tooltip.toString();
     }
 
     private void actionsProducer() {
@@ -199,7 +237,7 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
 
     @Override
     public void handleRow(KafkaConsumerRecord<String, String> row) {
-        jlabelMessagesFounded.setText("total= " + msgTotal.incrementAndGet() + ", filtradas="+msgFiltradas.get());
+        jlabelMessagesFounded.setText("total= " + msgTotal.incrementAndGet() + ", filtradas=" + msgFiltradas.get());
 
         LocalDateTime triggerTime =
                 LocalDateTime.ofInstant(Instant.ofEpochMilli(row.timestamp()),
@@ -213,7 +251,7 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
             if (!mensagem.toLowerCase().contains(textFieldFiltro.getText().toLowerCase())) {
                 return;
             }
-            jlabelMessagesFounded.setText("total= " + msgTotal.get() + ", filtradas="+msgFiltradas.incrementAndGet());
+            jlabelMessagesFounded.setText("total= " + msgTotal.get() + ", filtradas=" + msgFiltradas.incrementAndGet());
         }
 
         textAreaMensagens.append(info + mensagem + "\n\n");
@@ -237,11 +275,11 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
             mapTopicosLocal.put(jComboBoxEnvs.getSelectedItem().toString(),
                     map.entrySet()
                             .stream()
-                            .map(Map.Entry::getKey)
+                            .map(item -> new ItemComboboxTopics(item.getKey(), item.getValue()))
                             .sorted()
                             .collect(Collectors.toList()));
 
-            for (String key : mapTopicosLocal.get(jComboBoxEnvs.getSelectedItem().toString())) {
+            for (ItemComboboxTopics key : mapTopicosLocal.get(jComboBoxEnvs.getSelectedItem().toString())) {
                 jComboBoxTopicos.addItem(key);
             }
         });
@@ -271,4 +309,31 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
         return jComboBoxLatestEarliest.getSelectedItem().toString();
     }
 
+    class ItemComboboxTopics implements Comparable<ItemComboboxTopics> {
+        String topic;
+        List<PartitionInfo> partitionInfos;
+
+        public ItemComboboxTopics(String topic, List<PartitionInfo> partitionInfos) {
+            this.topic = topic;
+            this.partitionInfos = partitionInfos;
+        }
+
+        @Override
+        public int compareTo(ItemComboboxTopics o) {
+            return this.topic.compareTo(o.getTopic());
+        }
+
+        public String getTopic() {
+            return topic;
+        }
+
+        public List<PartitionInfo> getPartitionInfos() {
+            return partitionInfos;
+        }
+
+        @Override
+        public String toString() {
+            return topic;
+        }
+    }
 }
