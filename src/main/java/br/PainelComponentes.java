@@ -132,8 +132,8 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
                 kafkaService.createConsumer(false);
             });
         });
-        
-        jComboBoxTopicos.addActionListener(e->{
+
+        jComboBoxTopicos.addActionListener(e -> {
             SwingUtilities.invokeLater(() -> {
                 jComboBoxTopicos.setToolTipText(criaTooltipTopics());
             });
@@ -145,7 +145,7 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
             msgTotal.set(0);
             msgFiltradas.set(0);
             jlabelMessagesFounded.setText("total= 0, filtradas= 0");
-            
+
 
             kafkaService.subscribe();
         }));
@@ -177,9 +177,9 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
                         indice.incrementAndGet();
                         String identacao = "&nbsp;&nbsp;&nbsp;&nbsp;";
                         return "<br>" +
-                                identacao+"Replicas["+indice.get()+"].host=" + node.getHost() + "<br>" +
-                                identacao+"Replicas["+indice.get()+"].port=" + node.getPort() + "<br>" +
-                                identacao+"Replicas["+indice.get()+"].id=" + node.getId() + "<br>";
+                                identacao + "Replicas[" + indice.get() + "].host=" + node.getHost() + "<br>" +
+                                identacao + "Replicas[" + indice.get() + "].port=" + node.getPort() + "<br>" +
+                                identacao + "Replicas[" + indice.get() + "].id=" + node.getId() + "<br>";
                     }).collect(Collectors.joining()) + ")<br>" +
 
                     "</body></html>");
@@ -228,6 +228,12 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
             }
             mensagensEnviadas += msg + "\n";
 
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            
             kafkaService.send(this.getTopics().stream().findFirst().get(), msg);
         }
 
@@ -242,7 +248,7 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
         LocalDateTime triggerTime =
                 LocalDateTime.ofInstant(Instant.ofEpochMilli(row.timestamp()),
                         TimeZone.getDefault().toZoneId());
-        String info = "   " + jComboBoxEnvs.getSelectedItem().toString() + " - " + row.topic() + " - " + row.partition() + " - " + triggerTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) + "\n";
+        String info = " Ambiente:" + jComboBoxEnvs.getSelectedItem().toString() + ", Partição: " + row.partition() + ", timestamp: " + triggerTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) + "\n";
         String mensagem = "   " + row.value();
 
         //se tem filtro
@@ -337,3 +343,6 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
         }
     }
 }
+
+
+
