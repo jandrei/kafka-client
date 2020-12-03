@@ -133,12 +133,6 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
             });
         });
 
-        jComboBoxTopicos.addActionListener(e -> {
-            SwingUtilities.invokeLater(() -> {
-                jComboBoxTopicos.setToolTipText(criaTooltipTopics());
-            });
-        });
-
         //actions
         buttonSubscribe.addActionListener(e -> SwingUtilities.invokeLater(() -> {
             textAreaMensagens.setText("");
@@ -157,36 +151,6 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
         });
     }
 
-    private String criaTooltipTopics() {
-        if (jComboBoxTopicos.getSelectedItem() == null) {
-            return "";
-        }
-        ItemComboboxTopics combo = (ItemComboboxTopics) jComboBoxTopicos.getSelectedItem();
-
-        StringBuilder tooltip = new StringBuilder();
-        AtomicInteger indice = new AtomicInteger();
-        combo.getPartitionInfos().forEach(info -> {
-            tooltip.append("<html><body>" +
-                    "Partition=" + info.getPartition() + "<br>" +
-                    "Lider.host=" + info.getLeader().getHost() + "<br>" +
-                    "Lider.port=" + info.getLeader().getPort() + "<br>" +
-                    "Lider.id=" + info.getLeader().getId() + "<br>" +
-                    "Replicas.size=" + info.getReplicas().size() + "<br>" +
-                    "Replicas=(" + info.getReplicas().stream()
-                    .map(node -> {
-                        indice.incrementAndGet();
-                        String identacao = "&nbsp;&nbsp;&nbsp;&nbsp;";
-                        return "<br>" +
-                                identacao + "Replicas[" + indice.get() + "].host=" + node.getHost() + "<br>" +
-                                identacao + "Replicas[" + indice.get() + "].port=" + node.getPort() + "<br>" +
-                                identacao + "Replicas[" + indice.get() + "].id=" + node.getId() + "<br>";
-                    }).collect(Collectors.joining()) + ")<br>" +
-
-                    "</body></html>");
-        });
-
-        return tooltip.toString();
-    }
 
     private void actionsProducer() {
         buttonProducerMessage.addActionListener(e -> SwingUtilities.invokeLater(() -> {
@@ -233,7 +197,7 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            
+
             kafkaService.send(this.getTopics().stream().findFirst().get(), msg);
         }
 
@@ -243,6 +207,8 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
 
     @Override
     public void handleRow(KafkaConsumerRecord<String, String> row) {
+
+        
         jlabelMessagesFounded.setText("total= " + msgTotal.incrementAndGet() + ", filtradas=" + msgFiltradas.get());
 
         LocalDateTime triggerTime =
@@ -257,8 +223,13 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
             if (!mensagem.toLowerCase().contains(textFieldFiltro.getText().toLowerCase())) {
                 return;
             }
+
             jlabelMessagesFounded.setText("total= " + msgTotal.get() + ", filtradas=" + msgFiltradas.incrementAndGet());
         }
+        row.headers().stream().forEach(kafkaHeader -> {
+            System.out.println(kafkaHeader.key() + "=" + kafkaHeader.value());
+        });
+        System.out.println("------------------------");
 
         textAreaMensagens.append(info + mensagem + "\n\n");
 
