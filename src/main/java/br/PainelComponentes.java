@@ -25,6 +25,8 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
     JTextArea textAreaProdutor;
     JTextArea textAreaLogEnviadas;
     JTextField textFieldFiltro;
+    JTextField textFieldConsumerName;
+    JCheckBox jCheckBoxAutocomit;
     JLabel jlabelMessagesFounded;
 
     JScrollPane scrollPaneLogEnviadas;
@@ -75,20 +77,29 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
         jComboBoxTopicos.setPreferredSize(new Dimension(300, 15));
         this.add(jComboBoxTopicos, "left, span 4, wrap");
 
+        this.add(new JLabel("Consumer name: "), "right");
+        textFieldConsumerName = new JTextField("randomico");
+        textFieldConsumerName.setMinimumSize(new Dimension(150, 10));
+        this.add(this.textFieldConsumerName, "left");
+
+        this.add(new JLabel("Autocommit: "), "right");
+        jCheckBoxAutocomit = new JCheckBox();
+        this.add(this.jCheckBoxAutocomit, "left");
+
+        this.add(new JLabel("Desde: "), "right");
+        jComboBoxLatestEarliest = new JComboBox(new String[]{"latest", "earliest"});
+        this.add(jComboBoxLatestEarliest, "left, wrap");
 
         buttonSubscribe = new JButton("SUBSCRIBE");
         this.add(buttonSubscribe);
         buttonUnsubscribe = new JButton("UNSUBSCRIBE");
-        this.add(buttonUnsubscribe);
+        this.add(buttonUnsubscribe,"span 2, wrap");
 
-        this.add(new JLabel("Desde: "), "right");
-        jComboBoxLatestEarliest = new JComboBox(new String[]{"latest", "earliest"});
-        this.add(jComboBoxLatestEarliest, "left");
-
-        this.add(new JLabel("Filtro: "), "right");
+        this.add(new JLabel("Filtro: "), "left");
         textFieldFiltro = new JTextField();
-        textFieldFiltro.setMinimumSize(new Dimension(200, 10));
-        this.add(this.textFieldFiltro, "left, wrap");
+        textFieldFiltro.setMinimumSize(new Dimension(150, 10));
+        this.add(this.textFieldFiltro, "left,span 6,  wrap");
+
 
         textAreaMensagens = new JTextArea(15, 200);
         textAreaMensagens.setEditable(false);
@@ -207,14 +218,16 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
 
     @Override
     public void handleRow(KafkaConsumerRecord<String, String> row) {
-
-        
         jlabelMessagesFounded.setText("total= " + msgTotal.incrementAndGet() + ", filtradas=" + msgFiltradas.get());
 
         LocalDateTime triggerTime =
                 LocalDateTime.ofInstant(Instant.ofEpochMilli(row.timestamp()),
                         TimeZone.getDefault().toZoneId());
-        String info = " Ambiente:" + jComboBoxEnvs.getSelectedItem().toString() + ", Partição: " + row.partition() + ", timestamp: " + triggerTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) + "\n";
+        String info = " Ambiente:" + jComboBoxEnvs.getSelectedItem().toString() +
+                ", Partição: " + row.partition() +
+                ", offset: " + row.offset() +
+                ", timestamp: " + triggerTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) +
+                "\n";
         String mensagem = "   " + row.value();
 
         //se tem filtro
@@ -226,10 +239,10 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
 
             jlabelMessagesFounded.setText("total= " + msgTotal.get() + ", filtradas=" + msgFiltradas.incrementAndGet());
         }
-        row.headers().stream().forEach(kafkaHeader -> {
-            System.out.println(kafkaHeader.key() + "=" + kafkaHeader.value());
-        });
-        System.out.println("------------------------");
+//        row.headers().stream().forEach(kafkaHeader -> {
+//            System.out.println(kafkaHeader.key() + "=" + kafkaHeader.value());
+//        });
+//        System.out.println("------------------------");
 
         textAreaMensagens.append(info + mensagem + "\n\n");
 
@@ -284,6 +297,19 @@ public class PainelComponentes extends JPanel implements KafkaConfiguration {
     @Override
     public String fetchSince() {
         return jComboBoxLatestEarliest.getSelectedItem().toString();
+    }
+
+    @Override
+    public String getConsumerName() {
+        if (textFieldConsumerName.getText().equals("randomico")){
+            return UUID.randomUUID().toString();
+        }
+        return StringUtils.defaultIfBlank(textFieldConsumerName.getText(), UUID.randomUUID().toString());
+    }
+
+    @Override
+    public String isAutocommit() {
+        return String.valueOf(jCheckBoxAutocomit.isSelected());
     }
 
     class ItemComboboxTopics implements Comparable<ItemComboboxTopics> {

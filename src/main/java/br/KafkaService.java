@@ -28,9 +28,9 @@ public class KafkaService {
         config.put("bootstrap.servers", kafkaConfiguration.getBrokers());
         config.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         config.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
-        config.put("group.id", "GRUPOLOCAL-"+UUID.randomUUID().toString());
+        config.put("group.id", kafkaConfiguration.getConsumerName());
         config.put("auto.offset.reset", kafkaConfiguration.fetchSince());
-        config.put("enable.auto.commit", "false");
+        config.put("enable.auto.commit", kafkaConfiguration.isAutocommit());
 
         vertx = Vertx.vertx();
         kafkaConsumer = KafkaConsumer.create(vertx, config);

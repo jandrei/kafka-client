@@ -13,4 +13,6 @@ public interface KafkaConfiguration {
     String getBrokers();
     Set<String> getTopics();
     String fetchSince();
+    String getConsumerName();
+    String isAutocommit();
 }
