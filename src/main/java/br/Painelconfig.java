@@ -5,7 +5,6 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import java.nio.file.WatchService;
 
 public class Painelconfig extends JPanel {
 
@@ -14,7 +13,6 @@ public class Painelconfig extends JPanel {
     JButton btnAbrirArquivoConfig;
 
     public Painelconfig() {
-
         setLayout(new BorderLayout());
 
         painelNorte = new JPanel();
@@ -26,7 +24,7 @@ public class Painelconfig extends JPanel {
         this.painelNorte.add(this.btnAbrirArquivoConfig);
         btnAbrirArquivoConfig.addActionListener(e -> {
             try {
-                Runtime.getRuntime().exec(new String[]{"notepad.exe", Config.arquivoProperties.getCanonicalPath()});
+                Desktop.getDesktop().open(Config.arquivoProperties.getCanonicalFile());
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -36,9 +34,5 @@ public class Painelconfig extends JPanel {
         textAreaConfig.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(this.textAreaConfig);
         this.add(scrollPane, BorderLayout.CENTER);
-
-        
     }
-
-
 }
